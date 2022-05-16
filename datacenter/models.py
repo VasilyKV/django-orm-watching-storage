@@ -1,5 +1,7 @@
+import datetime
 from django.db import models
 
+from django.utils.timezone import localtime
 
 class Passcard(models.Model):
     is_active = models.BooleanField(default=False)
@@ -28,3 +30,13 @@ class Visit(models.Model):
                 if self.leaved_at else 'not leaved'
             )
         )
+
+def get_duration(Visit):
+    if Visit.leaved_at == None:
+        return localtime().replace(microsecond=0) - localtime(Visit.entered_at)
+    return localtime(Visit.leaved_at) - localtime(Visit.entered_at)
+
+def is_visit_long(duration, minutes=15):
+    if duration > datetime.timedelta(minutes=minutes):
+        return True 
+    return False
