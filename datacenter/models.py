@@ -32,11 +32,10 @@ class Visit(models.Model):
         )
 
 def get_duration(Visit):
-    if Visit.leaved_at == None:
-        return localtime().replace(microsecond=0) - localtime(Visit.entered_at)
-    return localtime(Visit.leaved_at) - localtime(Visit.entered_at)
+    if Visit.leaved_at:
+        return localtime(Visit.leaved_at) - localtime(Visit.entered_at)    
+    return localtime().replace(microsecond=0) - localtime(Visit.entered_at)
+    
 
 def is_visit_long(duration, minutes=15):
-    if duration > datetime.timedelta(minutes=minutes):
-        return True 
-    return False
+    return duration > datetime.timedelta(minutes=minutes)

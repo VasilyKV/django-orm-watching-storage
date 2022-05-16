@@ -8,19 +8,19 @@ from django.utils.timezone import localtime
 
 
 def storage_information_view(request):
-    active_visits = Visit.objects.filter(leaved_at=None)
+    non_closed_visits_orm = Visit.objects.filter(leaved_at=None)
     non_closed_visits = []
-    for visit in active_visits:
+    for visit in non_closed_visits_orm:
         duration = get_duration(visit)
-        temp_dict = {
-            'who_entered': f'{visit.passcard.owner_name}',
-            'entered_at': f'{localtime(visit.entered_at)}',
-            'duration': f'{duration}',
-            'is_strange': f'{is_visit_long(duration, minutes=60)}'
+        visit_details = {
+            'who_entered': visit.passcard.owner_name,
+            'entered_at': localtime(visit.entered_at),
+            'duration': duration,
+            'is_strange': is_visit_long(duration, minutes=60)
         }
-        non_closed_visits.append(temp_dict)
+        non_closed_visits.append(visit_details)
 
     context = {
-        'non_closed_visits': non_closed_visits,  # не закрытые посещения
+        'non_closed_visits': non_closed_visits,
     }
     return render(request, 'storage_information.html', context)
