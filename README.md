@@ -17,20 +17,21 @@ Python3 должен быть уже установлен. Затем испол
 
 `pip install -r requirements.txt`
 
-Для запуска сайта с консоли используйте команду 
+Для запуска сайта с консоли используйте команду: 
 ```cmd
-python manage.py runserver 0.0.0.0:8000```
+python manage.py runserver 0.0.0.0:8000
+```
 
 
 ### Переменные окружения
-Необходимо создать файл .env, в котором должны быть указаны значения следующие переменные:  
-ENGINE = {}
-HOST = {}
-PORT = {}
-NAME = {}
-USER = {}
-PASSWORD = {}
-SECRET_KEY = {}
+Необходимо создать файл .env, в котором должны быть указаны значения следующих переменных:  
+ENGINE = {}  
+HOST = {}  
+PORT = {}  
+NAME = {}  
+USER = {}  
+PASSWORD = {}  
+SECRET_KEY = {}  
 DEBUG = {True/False}
 
 
