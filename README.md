@@ -25,14 +25,16 @@ python manage.py runserver 0.0.0.0:8000
 
 ### Переменные окружения
 Необходимо создать файл .env, в котором должны быть указаны значения следующих переменных:  
-ENGINE = {}  
-HOST = {}  
-PORT = {}  
-NAME = {}  
-USER = {}  
-PASSWORD = {}  
+DB_ENGINE = {}  
+DB_HOST = {}  
+DB_PORT = {}  
+DB_NAME = {}  
+DB_USER = {}  
+DB_PASSWORD = {}  
 SECRET_KEY = {}  
 DEBUG = {True/False}
+ALLOWED_HOSTS = []
+
 
 
 ### Цели проекта
